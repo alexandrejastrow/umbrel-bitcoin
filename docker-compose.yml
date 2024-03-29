@@ -52,15 +52,15 @@ services:
       - "3005:3005"
     volumes:
       - ${PWD}/data/app:/data # volume to persist advanced settings json
-      - ${PWD}/data/bitcoin:/bitcoin/.bitcoin # volume to persist umbrel-bitcoin.conf and bitcoin.conf
+      - /media/jastrow/btc/data/bitcoin:/bitcoin/.bitcoin # volume to persist umbrel-bitcoin.conf and bitcoin.conf
     environment:
       PORT: "3005"
       BITCOIN_HOST: "bitcoind"
       BITCOIN_P2P_PORT: 8333
       BITCOIN_RPC_PORT: 8332
       BITCOIN_DEFAULT_NETWORK: "regtest"
-      RPC_USER: "umbrel"
-      RPC_PASSWORD: "moneyprintergobrrr"
+      RPC_USER: "admin"
+      RPC_PASSWORD: "admin"
       BITCOIN_RPC_HIDDEN_SERVICE: "somehiddenservice.onion"
       BITCOIN_P2P_HIDDEN_SERVICE: "anotherhiddenservice.onion"
       DEVICE_DOMAIN_NAME: "test.local"
