@@ -1,7 +1,4 @@
 version: "3.7"
-
-
-
 services:
   i2pd_daemon:
     container_name: i2pd_daemon
@@ -49,6 +46,7 @@ services:
     build: .
     depends_on: [bitcoind]
     command: ["npm", "start"]
+    user: "1000:1000"
     restart: on-failure
     ports:
       - "3005:3005"
