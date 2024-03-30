@@ -1,4 +1,10 @@
 version: "3.7"
+
+volumes:
+  server_data:
+  tor_server_data:
+  i2pd_data:
+
 services:
   i2pd_daemon:
     container_name: i2pd_daemon
@@ -7,7 +13,7 @@ services:
     command: --sam.enabled=true --sam.address=0.0.0.0 --sam.port=7656 --loglevel=error
     restart: on-failure
     volumes:
-      - /media/jastrow/btc/volumes/common/data/i2pd:/home/i2pd/data
+      - i2pd_data:/home/i2pd/data
     networks:
       default:
         ipv4_address: "10.21.0.2"
@@ -19,8 +25,8 @@ services:
     restart: on-failure
     entrypoint: /tor-entrypoint/tor-entrypoint.sh
     volumes:
-      - /media/jastrow/btc/volumes/tor_server/data/tor:/etc/tor
-      - /media/jastrow/btc/volumes/tor_server/tor-entrypoint:/tor-entrypoint
+      - tor_server_data:/etc/tor
+      - tor_server_data:/tor-entrypoint
     environment:
       HOME: "/tmp"
     networks:
@@ -51,8 +57,8 @@ services:
     ports:
       - "3005:3005"
     volumes:
-      - /media/jastrow/btc/volumes/server/data/app:/data # volume to persist advanced settings json
-      - /media/jastrow/btc/volumes/server/data/bitcoin:/bitcoin/.bitcoin # volume to persist umbrel-bitcoin.conf and bitcoin.conf
+      - server_data:/data # volume to persist advanced settings json
+      - server_data:/bitcoin/.bitcoin # volume to persist umbrel-bitcoin.conf and bitcoin.conf
     environment:
       PORT: "3005"
       BITCOIN_HOST: "bitcoind"
