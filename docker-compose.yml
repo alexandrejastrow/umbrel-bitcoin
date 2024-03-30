@@ -51,8 +51,8 @@ services:
     ports:
       - "3005:3005"
     volumes:
-      - /media/jastrow/btc/volumes/common/data/app:/data # volume to persist advanced settings json
-      - /media/jastrow/btc/volumes/common/data/bitcoin:/bitcoin/.bitcoin # volume to persist umbrel-bitcoin.conf and bitcoin.conf
+      - /media/jastrow/btc/volumes/server/data/app:/data # volume to persist advanced settings json
+      - /media/jastrow/btc/volumes/server/data/bitcoin:/bitcoin/.bitcoin # volume to persist umbrel-bitcoin.conf and bitcoin.conf
     environment:
       PORT: "3005"
       BITCOIN_HOST: "bitcoind"
